@@ -30,7 +30,7 @@ public class BookempController {
 		}
 	
 	// http://localhost:8081/Booksy/servlet/add-book
-	@PostMapping("/add-book")
+	@PostMapping("/add-bookemp")
 	@ResponseBody
 	public Bookemp addBookemp(@RequestBody Bookemp b) {
 		// TODO Auto-generated method stub

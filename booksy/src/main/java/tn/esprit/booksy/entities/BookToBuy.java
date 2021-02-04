@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
-@Table(name="booktobuy")
+//@Table(name="booktobuy")
 public class BookToBuy implements Serializable{
 
 	/**
@@ -38,7 +38,12 @@ private String marque;
 private int category_id;
 @Temporal(TemporalType.DATE)
 private Date edition ;
-public void setTitre (String s)
+
+	public BookToBuy() {
+
+	}
+
+	public void setTitre (String s)
 {this.titre= s;}
 public void setAuteur (String a)
 {this.auteur= a;}

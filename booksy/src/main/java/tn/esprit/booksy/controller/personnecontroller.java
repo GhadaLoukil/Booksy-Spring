@@ -2,6 +2,7 @@ package tn.esprit.booksy.controller;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +69,16 @@ public class personnecontroller {
 		return  personneservice.retrieveUser(id);
 		
 	}
-	
-	
-	
-	
+	@GetMapping("/getAllCommandeByPersonne/{idPersonne}/{idCommande}")
+
+	@ResponseBody
+	public List<String> getAllCommandeByPersonne(@PathVariable("idPersonne")int idP,@PathVariable("idCommande")int idC){
+		List<String> commandesPersonnes=new ArrayList<>();
+		commandesPersonnes=personneservice.getAllCommandeByPersonne(idP,idC);
+		return commandesPersonnes;
+	}
+
+
+
+
 }

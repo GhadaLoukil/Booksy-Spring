@@ -2,20 +2,13 @@ package tn.esprit.booksy.services;
 
 import java.util.ArrayList;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.logging.LogManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.apache.logging.log4j.*;
-import java.util.logging.Logger;
 
+import tn.esprit.booksy.entities.Commande;
 import tn.esprit.booksy.repository.*;
 import tn.esprit.booksy.entities.personne;
 
@@ -24,9 +17,10 @@ import tn.esprit.booksy.entities.personne;
 public class personneservice implements Ipersonneservice {
 @Autowired
 personnerepo personnerepo;
+
 //private static final Logger  L = (Logger) LogManager.getLogger(personne.class);
     
-  
+	CommandeRepository commandeRepository;
 	@Override
 	public ArrayList<personne> retrieveAllUsers() {
 		
@@ -65,12 +59,30 @@ personnerepo personnerepo;
 		return personnerepo.findById(id).get();
 	}
 
+	@Override
+	public int ajouterCommande(Commande commande) {
+		commandeRepository.save(commande);
+		return commande.getNumCommande();
+	}
 
+	@Override
 
+	public void affecterCommanderAPersonne(int idCommande, int idPersonne) {
+		personne personneManagerEntity=personnerepo.findById(idPersonne).get();
+		Commande CommandeManagerEntity=commandeRepository.findById((long) idCommande).get();
+		personneManagerEntity.getCommandes().add(CommandeManagerEntity);
 
+	}
 
-
-
+	@Override
+	public List<String> getAllCommandeByPersonne(int idPersonne, int idCommande) {
+		personne personneManagerEntity=personnerepo.findById(idPersonne).get();
+		List<String> commandes=new ArrayList<>();
+		for(Commande commande  : personneManagerEntity.getCommandes()){
+			commandes.add(String.valueOf(commande.getNumCommande()));
+		}
+		return commandes;
+	}
 
 
 }

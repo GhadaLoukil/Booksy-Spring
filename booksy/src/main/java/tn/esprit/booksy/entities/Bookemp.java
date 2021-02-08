@@ -3,12 +3,7 @@ package tn.esprit.booksy.entities;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "bookemp")
@@ -30,6 +25,10 @@ public class Bookemp implements Serializable {
 	    private double prix ;
 	@Column
 	    private int quantite ;
+
+	@ManyToOne
+	Categorie categorie;
+
 	public long getISBN() {
 		return ISBN;
 	}

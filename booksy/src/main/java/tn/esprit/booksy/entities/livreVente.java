@@ -34,6 +34,9 @@ public class livreVente implements Serializable{
 	    private double prix ;
 	@Column
 	    private int quantite;
+
+	@ManyToOne
+	Categorie categorie;
 	
 		public Long getISBN() {
 			return ISBN;

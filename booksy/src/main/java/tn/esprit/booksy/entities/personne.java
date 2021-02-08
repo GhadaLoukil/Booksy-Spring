@@ -29,6 +29,18 @@ public class personne implements Serializable{
 	    private String email;
 	@Column
 	    private String motdepasse;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="personne")
+	private Set<Commande> commandes;
+
+	public Set<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(Set<Commande> commandes) {
+		this.commandes = commandes;
+	}
+
 	@Column
 	    private int numero;
 		public personne(int id, String nom, String prenom, String sex, String email, String motdepasse, int numero) {

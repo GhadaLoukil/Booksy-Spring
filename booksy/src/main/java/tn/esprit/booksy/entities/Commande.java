@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Commande {
     @Id
@@ -19,14 +22,15 @@ public class Commande {
     private String status;
 
     @ManyToOne
-    private Membre membre;
+    private personne personne;
 
-    public Membre getMembre() {
-        return membre;
+    public List<personne> getPersonnes() {
+        List<personne> l=new ArrayList<>();
+        return l;
     }
 
-    public void setMembre(Membre membre) {
-        this.membre = membre;
+    public void setPersonne(personne personne) {
+        this.personne = personne;
     }
 
     public Commande() {

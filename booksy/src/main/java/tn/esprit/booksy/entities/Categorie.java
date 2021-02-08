@@ -1,15 +1,14 @@
 package tn.esprit.booksy.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
-//@Table(name = "categorie")
+@Table(name = "categorie")
+
 public class Categorie implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -18,6 +17,16 @@ public class Categorie implements Serializable {
 	    private String Nom_Categorie;
 	@Column
 	    private String Famille;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="categorie")
+	private Set<livreVente> LivreVente;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="categorie")
+	private Set<BookToBuy> BookToBuy;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="categorie")
+	private Set<Bookemp> Bookemp;
+
 		@Override
 		public String toString() {
 			return "categorie [Code_categorie=" + Code_categorie + ", Nom_Categorie=" + Nom_Categorie + ", Famille="
@@ -65,6 +74,7 @@ public class Categorie implements Serializable {
 				return false;
 			return true;
 		}
+
 		public long getCode_categorie() {
 			return Code_categorie;
 		}
